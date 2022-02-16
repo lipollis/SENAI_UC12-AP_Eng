@@ -25,7 +25,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         //http://localhost:8080/
         http
                 .authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/vagas**").permitAll()
+                .antMatchers("/projetos**").permitAll()
                 .antMatchers("/home**").permitAll().anyRequest()
                 .authenticated().and().formLogin().permitAll()
                 .and().logout().permitAll()

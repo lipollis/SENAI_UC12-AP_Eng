@@ -25,7 +25,7 @@ public class Terceirizado implements Serializable {
     @Column(name = "tipo_servico")
     private String tipoServico;
 
-    @Column(name = "cnpj_servico")
+    @Column(name = "cnpj_servico", unique = true)
     private String cnpj;
 
     @Column(name = "data_inicio")

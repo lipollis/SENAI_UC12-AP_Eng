@@ -23,7 +23,7 @@ public class Cliente {
     @Column(name = "email_cliente")
     private String email;
 
-    @Column(name = "cpf_cliente")
+    @Column(name = "cpf_cliente", unique = true)
     private String cpf;
 
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.REMOVE)

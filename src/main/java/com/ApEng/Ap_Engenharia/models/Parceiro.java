@@ -27,7 +27,7 @@ public class Parceiro implements Serializable {
     @Column(name = "email_parceiro")
     private String email;
 
-    @Column(name = "cnpj_parceiro")
+    @Column(name = "cnpj_parceiro", unique = true)
     private String cnpj;
 
     @OneToMany(mappedBy = "parceiros", cascade = CascadeType.REMOVE)

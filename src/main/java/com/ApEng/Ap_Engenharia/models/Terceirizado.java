@@ -25,6 +25,9 @@ public class Terceirizado implements Serializable {
     @Column(name = "tipo_servico")
     private String tipoServico;
 
+    @Column(name = "cnpj_servico")
+    private String cnpj;
+
     @Column(name = "data_inicio")
     private Date dataInicio;
 
@@ -68,6 +71,14 @@ public class Terceirizado implements Serializable {
 
     public void setTipoServico(String tipoServico) {
         this.tipoServico = tipoServico;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public Date getDataInicio() {

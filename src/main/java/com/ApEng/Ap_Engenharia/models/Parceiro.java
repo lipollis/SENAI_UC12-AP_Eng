@@ -27,6 +27,9 @@ public class Parceiro implements Serializable {
     @Column(name = "email_parceiro")
     private String email;
 
+    @Column(name = "cnpj_parceiro")
+    private String cnpj;
+
     @OneToMany(mappedBy = "parceiros", cascade = CascadeType.REMOVE)
     private Projeto projeto;
 
@@ -80,4 +83,11 @@ public class Parceiro implements Serializable {
         this.projeto = projeto;
     }
 
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 }

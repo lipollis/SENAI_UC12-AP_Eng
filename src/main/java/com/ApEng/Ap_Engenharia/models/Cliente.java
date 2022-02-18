@@ -23,6 +23,12 @@ public class Cliente {
     @Column(name = "email_cliente")
     private String email;
 
+    @Column(name = "cpf_cliente")
+    private String cpf;
+
+    @OneToMany(mappedBy = "clientes", cascade = CascadeType.REMOVE)
+    private Projeto projeto;
+
     // GETTER & SETTER
     public long getId() {
         return id;
@@ -62,5 +68,21 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 }

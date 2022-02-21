@@ -28,6 +28,182 @@
     <![endif]-->
 </head>
 <body>
+<!-- ========================================================================================================== -->
+<div class="container">
+    <br> <br>
+
+    <div class="row">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header card-title">
+                    <h3>Projetos</h3>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">Módulo responsável pelos projetos do
+                        escritório AP Engenharia.</p>
+                    <a href="/projetos" class="btn btn-primary">Listar
+                        Projetos</a> <a href="/cadastrarProjeto"
+                                            class="btn btn-success">Cadastrar Projeto</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header  card-title">
+                    <h3>Clientes</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Módulo responsável pelos clientes do
+                        escritório AP Engenharia.</p>
+                    <a href="/clientes" class="btn btn-primary">Listar Clientes</a> <a
+                        href="/cadastrarCliente" class="btn btn-success">Cadastrar Cliente</a>
+                </div>
+            </div>
+        </div>
+<!-- ========================================================================================================== -->
+
+
+    </div>
+
+
+
+    <!-- 	nova busca -->
+    <div class="row">
+        <div class="col">
+            <br> <br>
+            <div class="card text-center card w-100">
+                <div class="card-header">
+                    <h3><< Pesquisar no sistema>></h3>
+                </div>
+
+
+
+                <form class="form-inline" method="post">
+                    <div class="row form-group justify-content-center w-100 p-2">
+
+                        <div class="col col-14 col-md-2">
+
+                            <label for="cars" class="my-3 p-2 w-100">
+                                <h5>Tipo de busca:</h5>
+                            </label>
+                        </div>
+
+                        <div class="col col-14 col-md-2">
+
+
+                            <select name="nome" id="nome"
+                                    class="custom-select my-3 p-2 w-100" required>
+                                <option value="">Escolher...</option>
+                                <option value="todos">Todos</option>
+                                <option value="nomeProjeto">Projeto</option>
+                                <option value="nomeCliente">Cliente</option>
+                                <option value="nomeParceiro">Parceiro</option>
+                                <option value="nomeTerceirizado">Terceirizado</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="col col-14 col-md-4">
+
+                            <input class="form-control form-control-lg my-3 p-2 w-100"
+                                   type="search" placeholder="Insira sua pesquisa..."
+                                   aria-label="Pesquisar" name="buscar" id="buscar" required>
+
+                        </div>
+
+                        <div class="col col-14 col-md-2">
+
+                            <button class="btn btn-primary my-3 p-2 w-100" type="submit">Pesquisar</button>
+
+                        </div>
+                    </div>
+
+                </form>
+<!-- ========================================================================================================== -->
+                <div class="row form-group justify-content-center w-100 p-2">
+                    <h4> <i><span th:text="${mensagem}"></span></i> </h4>
+
+                </div>
+
+                <div class="row form-group justify-content-center w-100 p-2">
+                    <table
+                            class="table table-hover table-responsive w-auto table-striped">
+
+                        <tbody>
+                        <tr th:each="projeto : ${projetos}">
+                            <td><a
+                                    th:href="${(#mvc.url('projetoController#detalhesProjeto').arg(0, projeto.id)).build()}"><span
+                                    th:text="${projeto.nome}"></span></a> - em <i>projetos.</i></td>
+
+
+                        </tr>
+                        <tr th:each="cliente : ${clientes}">
+                            <td><a
+                                    th:href="${(#mvc.url('clienteController#detalhesCliente').arg(0, cliente.cpf)).build()}"><span
+                                    th:text="${cliente.nome}"></span></a> - em <i>clientes.</i></td>
+                        </tr>
+
+
+                        <tr th:each="parceiro : ${parceiros}">
+                            <td><a
+                                    th:href="${(#mvc.url('parceiroController#detalhesParceiro').arg(0, parceiro.cnpj)).build()}"><span
+                                    th:text="${parceiro.nome}"></span></a> - em <i>parceiros.</i></td>
+                        </tr>
+
+                        <tr th:each="terceirizado : ${terceirizados}">
+                            <td><a
+                                    th:href="${(#mvc.url('terceirizadoController#detalhesTerceirizado').arg(0, terceirizado.cnpj)).build()}"><span
+                                    th:text="${terceirizado.nome}"></span></a> - em <i>terceirizados.</i></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+<div class="container">
+    <br> <br>
+
+    <div class="row">
+        <div class="col">
+
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-header card-title">
+                            <h3>Empresas</h3>
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">Módulo responsável pelas empresas parceiras da
+                                agência de RH.</p>
+                            <a href="/empresas" class="btn btn-primary">Listar
+                                Empresas</a> <a href="/cadastrarEmpresa"
+                                                class="btn btn-success">Cadastrar Empresa</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 

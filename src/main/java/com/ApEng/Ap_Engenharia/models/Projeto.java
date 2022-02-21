@@ -34,6 +34,9 @@ public class Projeto implements Serializable {
     @OneToMany(mappedBy = "projetos", cascade = CascadeType.REMOVE)
     private Terceirizado terceirizado;
 
+    @OneToMany(mappedBy = "projetos", cascade = CascadeType.REMOVE)
+    private Parceiro parceiro;
+
     // GETTER & SETTER
     public long getId() {
         return id;
@@ -89,5 +92,13 @@ public class Projeto implements Serializable {
 
     public void setTerceirizado(Terceirizado terceirizado) {
         this.terceirizado = terceirizado;
+    }
+
+    public Parceiro getParceiro() {
+        return parceiro;
+    }
+
+    public void setParceiro(Parceiro parceiro) {
+        this.parceiro = parceiro;
     }
 }

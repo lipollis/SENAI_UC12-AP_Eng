@@ -28,7 +28,85 @@
     <![endif]-->
 </head>
 <body>
+<div class="container">
+<!-- ========================================================================================================== -->
+<h1>Detalhes do terceirizado:</h1>
+<div th:each="terceirizado : ${terceirizado}" class="container">
 
+    <br>
+    <p><b>Nome:</b> <span th:text="${terceirizado.nome}"></span></p>
+    <p><b>Celular:</b> <span th:text="${terceirizado.celular}"></span></p>
+    <p><b>Tipo de serviço:</b> <span th:text="${terceirizado.tipoServico}"></span></p>
+    <p><b>CNPJ:</b> <span th:text="${terceirizado.cnpj}"></span></p>
+    <p><b>Data de início:</b> R$ <span th:text="${terceirizado.dataInicio}"></span></p>
+    <p><b>Data de fim:</b> <span th:text="${terceirizado.dataFinal}"></span></p>
+    <p><b>Valor:</b> <span th:text="${terceirizado.valorServico}"></span></p>
+    <br> <br>
+    <!-- ========================================================================================================== -->
+    <h2>Cadastrar projeto:</h2>
+    <th:block th:include="mensagem-validacao"></th:block>
+    <br>
+
+    <form method="post" th:object="${projeto}">
+        <div class="form-group">
+            <div class="row">
+
+                <div class="col">
+                    <label for="nome"><b>Nome do projeto:</b> </label>
+                    <input type="text" class="form-control" value="" name="nome" id="nome"
+                           placeholder="Nome do projeto"
+                           required /></div>
+
+                <div class="col">
+                    <label for="dataInicio"><b>Previsão de início: </b> </label>
+                    <input type="text" class="validate form-control" value="" name="dataInicio" id="dataInicio"
+                           placeholder="Somente números, sem traços ou pontos."
+                           required /></div>
+
+                <div class="col">
+                    <label for="dataFinal"><b>Previsão de término: </b> </label>
+                    <input type="text" class="validate form-control" value="" name="dataFinal" id="dataFinal"
+                           placeholder="Somente números, sem traços ou pontos."
+                           required /></div>
+
+                <div class="col">
+                    <label for="valorProjeto"><b>Valor do projeto: </b> </label>
+                    <input type="text" class="validate form-control" value="" name="valorProjeto" id="valorProjeto"
+                           placeholder="R$ X.XXX,XX"
+                           required /></div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Adicionar projeto</button>
+    </form>
+</div>
+<br> <br>
+<!-- ========================================================================================================== -->
+<h2>Inscritos:</h2>
+<br>
+<table class="table table-hover table-responsive w-auto table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Nome do projeto:</th>
+        <th scope="col">Previsão de início:</th>
+        <th scope="col">Previsão de término:</th>
+        <th scope="col">Valor do projeto:</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="projeto : ${projetos}">
+        <td><span th:text="${projeto.nome}"></span></td>
+        <td><span th:text="${projeto.dataInicio}"></span></td>
+        <td><span th:text="${projeto.dataFinal}"></span></td>
+        <td><span th:text="${projeto.valorProjeto}"></span></td>
+        <td><a class="waves-effect waves-light btn-small"
+               th:href="${(#mvc.url('terceirizadoController#deletarTerceirizado').arg(0, terceirizado.cnpj)).build()}"><button
+                type="button" class="btn btn-danger">Excluir</button></a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
 
 
 <footer>

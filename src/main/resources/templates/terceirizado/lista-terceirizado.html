@@ -35,9 +35,45 @@
     <h1>Lista de terceirizados cadastrados</h1>
     <br>
 
+    <table class="table table-hover table-responsive w-auto table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Nome do terceirizado:</th>
+            <th scope="col">Celular:</th>
+            <th scope="col">Tipo de serviço:</th>
+            <th scope="col">Data de início:</th>
+            <th scope="col">Data de fim:</th>
+            <th scope="col">CNPJ:</th>
+            <th scope="col">Valor:</th>
+            <th scope="col"></th>
+            <th scope="col">Ações:</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="terceirizado: ${terceirizados}">
+            <td><a th:href="${(#mvc.url('TC#detalhesTerceirizado').arg(0, terceirizado.id)).build()}">
+                <span th:text="${terceirizado.nome}"></span> </a></td>
 
+            <td><span th:text="${terceirizado.celular}"></span></td>
+            <td><span th:text="${terceirizado.tipoServico}"></span></td>
+            <td><span th:text="${terceirizado.dataInicio}"></span></td>
+            <td><span th:text="${terceirizado.dataFinal}"></span></td>
+            <td><span th:text="${terceirizado.cnpj}"></span></td>
+            <td><span th:text="${terceirizado.valorServico}"></span></td>
+
+            <td><a th:href="${(#mvc.url('TC#deletarTerceirizado').arg(0, terceirizado.id)).build()}">
+                <button type="button" class="btn btn-danger">Excluir</button></a></td>
+            <td><a th:href="${(#mvc.url('TC#editarTerceirizado').arg(0, terceirizado.id)).build()}">
+                <button type="button" class="btn btn-primary">Editar</button></a></td>
+            <td><a th:href="${(#mvc.url('TC#detalhesTerceirizado').arg(0, terceirizado.id)).build()}">
+                <button type="button" class="btn btn-success">Adicionar projeto</button></a></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
+<!-- ========================================================================================================== -->
 
 <footer>
 
@@ -51,5 +87,15 @@
         crossorigin="anonymous">
 
 </script>
+<!--Máscara JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquerymaskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<script type="text/javascript">
+	 $(function() {
+	 $('.mask-real').maskMoney({showSymbol:true,symbol:'R$ ',
+	 decimal:',', thousands:'.', allowZero:true}); // valor monetario
+	 });
+	</script>
 </body>
 </html>

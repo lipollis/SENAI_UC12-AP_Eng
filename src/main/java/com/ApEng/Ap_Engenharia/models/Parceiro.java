@@ -28,6 +28,8 @@ public class Parceiro implements Serializable {
     @Column(unique = true)
     private String cnpj;
 
+    private double valorParceiria;
+
     @OneToMany(mappedBy = "parceiro", cascade = CascadeType.REMOVE)
     private List<Projeto> projetos;
 
@@ -78,6 +80,14 @@ public class Parceiro implements Serializable {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public Double getValorParceiria() {
+        return valorParceiria;
+    }
+
+    public void setValorParceiria(Double valorParceiria) {
+        this.valorParceiria = valorParceiria;
     }
 
     public List<Projeto> getProjetos() {

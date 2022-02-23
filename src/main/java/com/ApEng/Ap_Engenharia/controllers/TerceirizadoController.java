@@ -73,11 +73,11 @@ public class TerceirizadoController {
             attributes.addFlashAttribute("mensagem", "Verifique os campos.");
             return "redirect:/detalhes-terceirizado/{id}";
         }
-
+/*
         if(projetoRepository.findById(projeto.getId()) != null){
-            attributes.addFlashAttribute("mensagem_erro", "ID duplicado");
+            attributes.addFlashAttribute("mensagem_erro", "ID duplicado.");
             return "redirect:/detalhes-terceirizado/{id}";
-        }
+        }*/
 
         Terceirizado terceirizado = terceirizadoRepository.findById(id);
         projeto.setTerceirizado(terceirizado);

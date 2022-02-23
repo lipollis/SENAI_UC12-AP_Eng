@@ -67,6 +67,7 @@
         </tbody>
     </table>
 </div>
+<!-- ========================================================================================================== -->
 <footer>
 
 </footer>
@@ -79,6 +80,16 @@
         crossorigin="anonymous">
 
 </script>
+<!--Máscara JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquerymaskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<script type="text/javascript">
+	 $(function() {
+	 $('.mask-real').maskMoney({showSymbol:true,symbol:'R$ ',
+	 decimal:',', thousands:'.', allowZero:true}); // valor monetario
+	 });
+	</script>
 
 </body>
 </html>

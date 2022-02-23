@@ -47,7 +47,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="celular"><b>Celular:</b></label>
-                    <input type="text" class="form-control" value="" name="celular"  id="celular"
+                    <input type="number" class="form-control" value="" name="celular"  id="celular"
                            placeholder="(XX) XXXXX-XXXX"
                            required />
                     <small class="form-text text-muted"><i>* Melhor número para ligação e troca de mensagem.</i></small></div>
@@ -65,7 +65,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="email"><b>E-mail:</b></label>
-                    <input type="text" class="form-control" value="" name="email" id="email"
+                    <input type="email" class="form-control" value="" name="email" id="email"
                            placeholder="nome@dominio.com.br"
                            required />
                     <small class="form-text text-muted"><i>* nome@dominio.com.br</i></small></div>
@@ -74,7 +74,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="cpf"><b>CPF:</b></label>
-                    <input type="text" class="form-control" value="" name="cpf" id="cpf"
+                    <input type="number" class="form-control" value="" name="cpf" id="cpf"
                            placeholder="XXX.XXX.XXX-XX"
                            required />
                     <small class="form-text text-muted"><i>* XXX.XXX.XXX-XX </i></small></div>
@@ -85,7 +85,7 @@
         <button type="submit" class="btn btn-success">Adicionar cliente</button>
     </form>
 </div>
-
+<!-- ========================================================================================================== -->
 <footer>
 
 </footer>
@@ -98,5 +98,15 @@
         crossorigin="anonymous">
 
 </script>
+<!--Máscara JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquerymaskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<script type="text/javascript">
+	 $(function() {
+	 $('.mask-real').maskMoney({showSymbol:true,symbol:'R$ ',
+	 decimal:',', thousands:'.', allowZero:true}); // valor monetario
+	 });
+	</script>
 </body>
 </html>

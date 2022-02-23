@@ -59,19 +59,19 @@
 
                     <div class="col">
                         <label for="dataInicio"><b>Previsão de início: </b> </label>
-                        <input type="date" class="validate form-control" value="" name="dataInicio" id="dataInicio"
+                        <input type="text" class="validate form-control" value="" name="dataInicio" id="dataInicio"
                                placeholder="Somente números, sem traços ou pontos."
                                required /></div>
 
                     <div class="col">
                         <label for="dataFinal"><b>Previsão de término: </b> </label>
-                        <input type="date" class="validate form-control" value="" name="dataFinal" id="dataFinal"
+                        <input type="text" class="validate form-control" value="" name="dataFinal" id="dataFinal"
                                placeholder="Somente números, sem traços ou pontos."
                                required /></div>
 
                     <div class="col">
                         <label for="valorProjeto"><b>Valor do projeto: </b> </label>
-                        <input type="number" class="validate form-control" value="" name="valorProjeto" id="valorProjeto"
+                        <input type="number" class="validate form-control mask-real" value="" name="valorProjeto" id="valorProjeto"
                                placeholder="R$ X.XXX,XX"
                                required /></div>
                 </div>
@@ -110,7 +110,7 @@
 </div>
 
 
-
+<!-- ========================================================================================================== -->
 <footer>
 
 </footer>
@@ -123,5 +123,15 @@
         crossorigin="anonymous">
 
 </script>
+<!--Máscara JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquerymaskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<script type="text/javascript">
+	 $(function() {
+	 $('.mask-real').maskMoney({showSymbol:true,symbol:'R$ ',
+	 decimal:',', thousands:'.', allowZero:true}); // valor monetario
+	 });
+	</script>
 </body>
 </html>

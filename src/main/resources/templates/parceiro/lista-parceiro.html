@@ -34,10 +34,43 @@
 
     <h1>Lista de parceiros cadastrados</h1>
     <br>
+    <table class="table table-hover table-responsive w-auto table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Nome do parceiro:</th>
+            <th scope="col">Celular:</th>
+            <th scope="col">Endereço:</th>
+            <th scope="col">E-mail:</th>
+            <th scope="col">CNPJ:</th>
+            <th scope="col">Valor:</th>
+            <th scope="col"></th>
+            <th scope="col">Ações:</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="parceiro: ${parceiros}">
+            <td><a th:href="${(#mvc.url('PC#detalhesParceiro').arg(0, parceiro.id)).build()}">
+                <span th:text="${parceiro.nome}"></span> </a></td>
 
+            <td><span th:text="${parceiro.celular}"></span></td>
+            <td><span th:text="${parceiro.endereco}"></span></td>
+            <td><span th:text="${parceiro.email}"></span></td>
+            <td><span th:text="${parceiro.cnpj}"></span></td>
+            <td><span th:text="${parceiro.valorParceiria}"></span></td>
+
+            <td><a th:href="${(#mvc.url('PC#deletarParceiro').arg(0, parceiro.id)).build()}">
+                <button type="button" class="btn btn-danger">Excluir</button></a></td>
+            <td><a th:href="${(#mvc.url('PC#editarParceiro').arg(0, parceiro.id)).build()}">
+                <button type="button" class="btn btn-primary">Editar</button></a></td>
+            <td><a th:href="${(#mvc.url('PC#detalhesParceiro').arg(0, parceiro.id)).build()}">
+                <button type="button" class="btn btn-success">Adicionar projeto</button></a></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
-
+<!-- ========================================================================================================== -->
 <footer>
 
 </footer>
@@ -50,5 +83,15 @@
         crossorigin="anonymous">
 
 </script>
+<!--Máscara JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquerymaskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<script type="text/javascript">
+	 $(function() {
+	 $('.mask-real').maskMoney({showSymbol:true,symbol:'R$ ',
+	 decimal:',', thousands:'.', allowZero:true}); // valor monetario
+	 });
+	</script>
 </body>
 </html>

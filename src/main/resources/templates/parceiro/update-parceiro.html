@@ -36,13 +36,67 @@
     <form method="post">
         <h1>Atualizar informações de parceiro</h1>
         <br>
+        <div class="form-group">
+            <label for="nome"><b>Nome do parceiro:</b> </label>
+            <input type="text" class="form-control" value="" name="nome" id="nome"
+                   placeholder="Insira o nome do parceiro"
+                   required th:attr="value = ${parceiro.nome}" />
+            <small class="form-text text-muted"><i>*Utilize nome fantasia.</i></small></div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="celular"><b>Celular:</b></label>
+                    <input type="number" class="form-control" value="" name="celular"  id="celular"
+                           placeholder="(XX) XXXXX-XXXX"
+                           required th:attr="value = ${parceiro.celular}" />
+                    <small class="form-text text-muted"><i>* Melhor número para ligação e troca de mensagem.</i></small></div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="endereco"><b>Endereço:</b></label>
+                    <input type="text" class="form-control" value="" name="endereco" id="endereco"
+                           placeholder=""
+                           required th:attr="value = ${parceiro.endereco}" />
+                    <small class="form-text text-muted"><i>* Rua, número, complemento, cidade - estado.</i></small></div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="email"><b>E-mail:</b></label>
+                    <input type="email" class="form-control" value="" name="email" id="email"
+                           placeholder="nome@dominio.com.br"
+                           required th:attr="value = ${parceiro.email}" />
+                    <small class="form-text text-muted"><i>* nome@dominio.com.br</i></small></div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="cnpj"><b>CNPJ:</b></label>
+                    <input type="number" class="form-control" value="" name="cnpj" id="cnpj"
+                           placeholder="XX.XXX.XXX/XXXX-XX"
+                           required th:attr="value = ${parceiro.cnpj}" />
+                    <small class="form-text text-muted"><i>* XX.XXX.XXX/XXXX-XX </i></small></div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="valorParceiria"><b>Valor:</b></label>
+                    <input type="text" class="form-control " value="" name="valorParceiria" id="valorParceiria"
+                           placeholder="R$ X.XXX,XX"
+                           required th:attr="value = ${parceiro.valorParceiria}" />
+                    <small class="form-text text-muted"><i>* R$ X.XXX,XX </i></small></div>
+            </div>
 
 
-
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+    </form>
 </div>
 
 
-
+<!-- ========================================================================================================== -->
 <footer>
 
 </footer>
@@ -55,5 +109,15 @@
         crossorigin="anonymous">
 
 </script>
+<!--Máscara JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquerymaskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<script type="text/javascript">
+	 $(function() {
+	 $('.mask-real').maskMoney({showSymbol:true,symbol:'R$ ',
+	 decimal:',', thousands:'.', allowZero:true}); // valor monetario
+	 });
+	</script>
 </body>
 </html>

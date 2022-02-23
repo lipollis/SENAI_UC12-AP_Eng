@@ -26,12 +26,11 @@ public class Terceirizado implements Serializable {
     @NotEmpty
     @Column(unique = true)
     private String cnpj;
-    @NotEmpty
+
     private Date dataInicio;
-    @NotEmpty
     private Date dataFinal;
-    @NotEmpty
-    private Double valorServico;
+    private double valorServico;
+
     @OneToMany(mappedBy = "terceirizado", cascade = CascadeType.REMOVE)
     private List<Projeto> projetos;
 

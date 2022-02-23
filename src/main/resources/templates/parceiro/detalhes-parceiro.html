@@ -31,23 +31,83 @@
 <div class="container">
     <!-- ========================================================================================================== -->
     <h1>Detalhes do parceiro:</h1>
+    <div th:each="parceiro : ${parceiros}" class="container">
 
+        <br>
+        <p><b>Nome:</b> <span th:text="${parceiro.nome}"></span></p>
+        <p><b>CNPJ:</b> <span th:text="${parceiro.cnpj}"></span></p>
+        <p><b>Celular:</b> <span th:text="${parceiro.celular}"></span></p>
+        <p><b>Endereço:</b> <span th:text="${parceiro.endereco}"></span></p>
+        <p><b>Email:</b> <span th:text="${parceiro.email}"></span></p>
+        <p><b>Valor:</b> <span th:text="${parceiro.valorParceiria}"></span></p>
         <br> <br>
         <!-- ========================================================================================================== -->
-        <h2>Cadastrar projeto:</h2>
-        <th:block th:include="mensagem-validacao"></th:block>
-        <br>
 
+<h2>Cadastrar projeto:</h2>
+    <th:block th:include="mensagem-validacao"></th:block>
+    <br>
+    <form method="post" th:object="${projeto}">
+        <div class="form-group">
+            <div class="row">
 
+                <div class="col">
+                    <label for="nome"><b>Nome do projeto:</b> </label>
+                    <input type="text" class="form-control" value="" name="nome" id="nome"
+                           placeholder="Nome do projeto"
+                           required /></div>
+
+                <div class="col">
+                    <label for="dataInicio"><b>Previsão de início: </b> </label>
+                    <input type="text" class="validate form-control" value="" name="dataInicio" id="dataInicio"
+                           placeholder="Somente números, sem traços ou pontos."
+                           required /></div>
+
+                <div class="col">
+                    <label for="dataFinal"><b>Previsão de término: </b> </label>
+                    <input type="text" class="validate form-control" value="" name="dataFinal" id="dataFinal"
+                           placeholder="Somente números, sem traços ou pontos."
+                           required /></div>
+
+                <div class="col">
+                    <label for="valorProjeto"><b>Valor do projeto: </b> </label>
+                    <input type="text" class="validate form-control " value="" name="valorProjeto" id="valorProjeto"
+                           placeholder="R$ X.XXX,XX"
+                           required /></div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Adicionar projeto</button>
+    </form>
     </div>
     <br> <br>
-    <!-- ========================================================================================================== -->
-    <h2>Inscritos:</h2>
-    <br>
+<th:block th:include="mensagem-validacao"></th:block>
+<!-- ========================================================================================================== -->
+<h2>Projetos:</h2>
+<br>
+<table class="table table-hover table-responsive w-auto table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Nome do projeto:</th>
+        <th scope="col">Previsão de início:</th>
+        <th scope="col">Previsão de término:</th>
+        <th scope="col">Valor do projeto:</th>
+    </tr>
+    </thead>
+    <tbody>
 
+    <tr th:each="projeto : ${projetos}">
+        <td><span th:text="${projeto.nome}"></span></td>
+        <td><span th:text="${projeto.dataInicio}"></span></td>
+        <td><span th:text="${projeto.dataFinal}"></span></td>
+        <td><span th:text="${projeto.valorProjeto}"></span></td>
+        <td><a class="waves-effect waves-light btn-small"
+               th:href="${(#mvc.url('PC#deletarProjetoParceiro').arg(0, projeto.nome)).build()}"><button
+                type="button" class="btn btn-danger">Excluir</button></a></td>
+    </tr>
+    </tbody>
+</table>
 </div>
-
-
+<!-- ========================================================================================================== -->
 <footer>
 
 </footer>
@@ -60,5 +120,15 @@
         crossorigin="anonymous">
 
 </script>
+<!--Máscara JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquerymaskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<script type="text/javascript">
+	 $(function() {
+	 $('.mask-real').maskMoney({showSymbol:true,symbol:'R$ ',
+	 decimal:',', thousands:'.', allowZero:true}); // valor monetario
+	 });
+	</script>
 </body>
 </html>

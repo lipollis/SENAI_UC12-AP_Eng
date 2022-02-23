@@ -17,11 +17,9 @@ public class Projeto implements Serializable{
     private long id;
     @NotEmpty
     private String nome;
-    @NotEmpty
+
     private Date dataInicio;
-    @NotEmpty
     private Date dataFinal;
-    @NotEmpty
     private double valorProjeto;
 
     @ManyToOne

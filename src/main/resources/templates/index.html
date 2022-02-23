@@ -130,13 +130,13 @@
 
                         <tbody>
                         <tr th:each="cliente : ${clientes}">
-                            <td><a th:href="${(#mvc.url('ClienteController#detalhesCliente').arg(0, cliente.id)).build()}">
+                            <td><a th:href="${(#mvc.url('CC#detalhesCliente').arg(0, cliente.id)).build()}">
                                 <span th:text="${cliente.nome}"></span></a> - em <i>clientes.</i></td>
 
 
                         </tr>
                         <tr th:each="parceiro : ${parceiros}">
-                            <td><a th:href="${(#mvc.url('ParceiroController#detalhesParceiro').arg(0, parceiro.id)).build()}">
+                            <td><a th:href="${(#mvc.url('PC#detalhesParceiro').arg(0, parceiro.id)).build()}">
                                 <span th:text="${parceiro.nome}"></span></a> - em <i>parceiros.</i></td>
                         </tr>
 
@@ -147,7 +147,8 @@
                         </tr>
 
                         <tr th:each="terceirizado : ${terceirizados}">
-                            <td><span th:text="${terceirizado.nome}"></span> - <i>em
+                            <td><a th:href="${(#mvc.url('TC#detalhesTerceirizado').arg(0, terceirizado.id)).build()}">
+                                <span th:text="${terceirizado.nome}"></span></a> - <i>em
                                 terceirizados.</i></td>
                         </tr>
 

@@ -72,11 +72,11 @@ public class ParceiroController {
             attributes.addFlashAttribute("mensagem", "Verifique os campos.");
             return "redirect:/detalhes-parceiro/{id}";
         }
-
+/*
         if(projetoRepository.findById(projeto.getId()) != null){
             attributes.addFlashAttribute("mensagem_erro", "ID duplicado");
             return "redirect:/detalhes-parceiro/{id}";
-        }
+        }*/
 
         Parceiro parceiro = parceiroRepository.findById(id);
         projeto.setParceiro(parceiro);

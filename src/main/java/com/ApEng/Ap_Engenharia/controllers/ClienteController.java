@@ -5,6 +5,7 @@ import com.ApEng.Ap_Engenharia.models.Projeto;
 import com.ApEng.Ap_Engenharia.repositories.ClienteRepository;
 import com.ApEng.Ap_Engenharia.repositories.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+@Controller
 public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
@@ -90,7 +92,7 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
-    // DELETE PARA O PROJETO USANDO O CPF
+    // DELETE PARA O PROJETO
     @RequestMapping("/deletarProjeto")
     public String deletarProjeto(long id){
         Projeto projeto = projetoRepository.findById(id);
@@ -100,7 +102,7 @@ public class ClienteController {
 
         projetoRepository.delete(projeto);
 
-        return "redirect:/detalhes-cliente/" + cpf;
+        return "redirect:/cliente/" + cpf;
     }
 
     // MÉTODOS UPDATE PARA CLIENTE
@@ -121,6 +123,6 @@ public class ClienteController {
 
         long idLong = cliente.getId();
         String id = "" + idLong;
-        return "redirect:/detalhes-cliente/" + id;
+        return "redirect:/cliente/" + id;
     }
 }

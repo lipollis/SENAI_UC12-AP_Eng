@@ -40,9 +40,8 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">Módulo responsável pelos clientes do escritório AP ENGENHARIA.</p>
-                    <a href="/clientes" class="btn btn-primary">Listar
-                        Clientes</a> <a href="/cadastrarCliente"
-                                            class="btn btn-success">Cadastrar Clientes</a>
+                    <a href="/clientes" class="btn btn-primary">Listar Clientes</a>
+                    <a href="/cadastrarCliente" class="btn btn-success">Cadastrar Clientes</a>
                 </div>
             </div>
         </div>
@@ -54,8 +53,8 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">Módulo responsável pelos parceiros do escritório AP ENGENHARIA.</p>
-                    <a href="/parceiros" class="btn btn-primary">Listar Parceiros</a> <a
-                        href="/cadastrarParceiro" class="btn btn-success">Cadastrar Parceiros</a>
+                    <a href="/parceiros" class="btn btn-primary">Listar Parceiros</a>
+                    <a href="/cadastrarParceiro" class="btn btn-success">Cadastrar Parceiros</a>
                 </div>
             </div>
         </div>
@@ -67,8 +66,8 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">Módulo responsável pelos terceirizados do escritório AP ENGENHARIA.</p>
-                    <a href="/terceirizados" class="btn btn-primary">Listar Terceirizados</a> <a
-                        href="/cadastrarTerceirizado" class="btn btn-success">Cadastrar Terceirizados</a>
+                    <a href="/terceirizados" class="btn btn-primary">Listar Terceirizados</a>
+                    <a href="/cadastrarTerceirizado" class="btn btn-success">Cadastrar Terceirizados</a>
                 </div>
             </div>
         </div>
@@ -131,22 +130,20 @@
 
                         <tbody>
                         <tr th:each="cliente : ${clientes}">
-                            <td><a
-                                    th:href="${(#mvc.url('clienteController#detalhesCliente').arg(0, cliente.id)).build()}"><span
-                                    th:text="${cliente.nome}"></span></a> - em <i>clientes.</i></td>
+                            <td><a th:href="${(#mvc.url('ClienteController#detalhesCliente').arg(0, cliente.id)).build()}">
+                                <span th:text="${cliente.nome}"></span></a> - em <i>clientes.</i></td>
 
 
                         </tr>
                         <tr th:each="parceiro : ${parceiros}">
-                            <td><a
-                                    th:href="${(#mvc.url('parceiroController#detalhesParceiro').arg(0, parceiro.id)).build()}"><span
-                                    th:text="${parceiro.nome}"></span></a> - em <i>parceiros.</i></td>
+                            <td><a th:href="${(#mvc.url('ParceiroController#detalhesParceiro').arg(0, parceiro.id)).build()}">
+                                <span th:text="${parceiro.nome}"></span></a> - em <i>parceiros.</i></td>
                         </tr>
 
 
                         <tr th:each="projeto : ${projetos}">
-                            <td><span th:text="${projeto.nome}"></span> - <i>em
-                                projetos.</i></td>
+                            <td><span th:text="${projeto.nome}">
+                            </span> - <i>em projetos.</i></td>
                         </tr>
 
                         <tr th:each="terceirizado : ${terceirizados}">

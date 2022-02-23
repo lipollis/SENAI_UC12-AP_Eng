@@ -39,8 +39,8 @@
         <p><b>CPF:</b> <span th:text="${cliente.cpf}"></span></p>
         <p><b>Celular:</b> <span th:text="${cliente.celular}"></span></p>
         <p><b>Endereço:</b> <span th:text="${cliente.endereco}"></span></p>
-        <p><b>Email:</b> R$ <span th:text="${cliente.email}"></span></p>
-        <p><b>Projeto:</b> <span th:text="${cliente.projeto}"></span></p>
+        <p><b>Email:</b> <span th:text="${cliente.email}"></span></p>
+
         <br> <br>
 <!-- ========================================================================================================== -->
         <h2>Cadastrar projeto:</h2>
@@ -59,19 +59,19 @@
 
                     <div class="col">
                         <label for="dataInicio"><b>Previsão de início: </b> </label>
-                        <input type="text" class="validate form-control" value="" name="dataInicio" id="dataInicio"
+                        <input type="date" class="validate form-control" value="" name="dataInicio" id="dataInicio"
                                placeholder="Somente números, sem traços ou pontos."
                                required /></div>
 
                     <div class="col">
                         <label for="dataFinal"><b>Previsão de término: </b> </label>
-                        <input type="text" class="validate form-control" value="" name="dataFinal" id="dataFinal"
+                        <input type="date" class="validate form-control" value="" name="dataFinal" id="dataFinal"
                                placeholder="Somente números, sem traços ou pontos."
                                required /></div>
 
                     <div class="col">
                         <label for="valorProjeto"><b>Valor do projeto: </b> </label>
-                        <input type="text" class="validate form-control" value="" name="valorProjeto" id="valorProjeto"
+                        <input type="number" class="validate form-control" value="" name="valorProjeto" id="valorProjeto"
                                placeholder="R$ X.XXX,XX"
                                required /></div>
                 </div>
@@ -102,7 +102,7 @@
             <td><span th:text="${projeto.dataFinal}"></span></td>
             <td><span th:text="${projeto.valorProjeto}"></span></td>
             <td><a class="waves-effect waves-light btn-small"
-                   th:href="${(#mvc.url('CC#deletarProjeto').arg(0, projeto.id)).build()}"><button
+                   th:href="${(#mvc.url('CC#deletarProjeto').arg(0, projeto.nome)).build()}"><button
                     type="button" class="btn btn-danger">Excluir</button></a></td>
         </tr>
         </tbody>

@@ -32,6 +32,61 @@
 <!-- ========================================================================================================== -->
 <div class="container">
 
+    <th:block th:include="mensagem-validacao"></th:block>
+
+    <form method="post">
+        <h1>Atualizar informações de cliente</h1>
+        <br>
+
+        <div class="form-group">
+            <label for="nome"><b>Nome do cliente:</b> </label>
+            <input type="text" class="form-control" value="" name="nome" id="nome"
+                   placeholder="Insira o nome do cliente"
+                   required th:attr="value = ${cliente.nome}" />
+            <small class="form-text text-muted"><i>*Utilize nome social.</i></small></div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="celular"><b>Celular:</b></label>
+                    <input type="text" class="form-control" value="" name="celular"  id="celular"
+                           placeholder="(XX) XXXXX-XXXX"
+                           required th:attr="value = ${cliente.celular}" />
+                    <small class="form-text text-muted"><i>* Melhor número para ligação e troca de mensagem.</i></small></div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="endereco"><b>Endereço:</b></label>
+                    <input type="text" class="form-control" value="" name="endereco" id="endereco"
+                           placeholder=""
+                           required th:attr="value = ${cliente.endereco}" />
+                    <small class="form-text text-muted"><i>* Rua, número, complemento, cidade - estado.</i></small></div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="email"><b>E-mail:</b></label>
+                    <input type="text" class="form-control" value="" name="email" id="email"
+                           placeholder="nome@dominio.com.br"
+                           required th:attr="value = ${cliente.email}" />
+                    <small class="form-text text-muted"><i>* nome@dominio.com.br</i></small></div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="cpf"><b>CPF:</b></label>
+                    <input type="text" class="form-control" value="" name="cpf" id="cpf"
+                           placeholder="XXX.XXX.XXX-XX"
+                           required th:attr="value = ${cliente.cpf}" />
+                    <small class="form-text text-muted"><i>* XXX.XXX.XXX-XX </i></small></div>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+    </form>
 </div>
 
 

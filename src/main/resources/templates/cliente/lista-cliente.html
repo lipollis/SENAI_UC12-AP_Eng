@@ -34,7 +34,38 @@
 
     <h1>Lista de vagas cadastradas</h1>
     <br>
+    <table class="table table-hover table-responsive w-auto table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Nome do cliente:</th>
+            <th scope="col">Celular:</th>
+            <th scope="col">Endereço:</th>
+            <th scope="col">E-mail:</th>
+            <th scope="col">CPF:</th>
+            <th scope="col"></th>
+            <th scope="col">Ações:</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente: ${clientes}">
+            <td><a th:href="${(#mvc.url('CC#detalhesCliente').arg(0, cliente.id)).build()}">
+                <span th:text="${cliente.nome}"></span> </a></td>
 
+            <td><span th:text="${cliente.celular}"></span></td>
+            <td><span th:text="${cliente.endereco}"></span></td>
+            <td><span th:text="${cliente.email}"></span></td>
+            <td><span th:text="${cliente.cpf}"></span></td>
+
+            <td><a th:href="${(#mvc.url('CC#deletarCliente').arg(0, cliente.id)).build()}">
+                <button type="button" class="btn btn-danger">Excluir</button></a></td>
+            <td><a th:href="${(#mvc.url('CC#editarCliente').arg(0, cliente.id)).build()}">
+                <button type="button" class="btn btn-primary">Editar</button></a></td>
+            <td><a th:href="${(#mvc.url('CC#detalhesCliente').arg(0, cliente.id)).build()}">
+                <button type="button" class="btn btn-success">Adicionar projeto</button></a></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <footer>
 

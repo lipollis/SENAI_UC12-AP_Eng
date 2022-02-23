@@ -1,3 +1,4 @@
+
 package com.ApEng.Ap_Engenharia.controllers;
 
 import com.ApEng.Ap_Engenharia.models.Parceiro;
@@ -50,17 +51,40 @@ public class ParceiroController {
     }
 
     // GET QUE MOSTRA OS DETALHES DE PARCEIRO E PROJETO
-    @RequestMapping("/parceiro/{id}")
+    @RequestMapping("/detalhes-parceiro/{id}")
     public ModelAndView detalhesParceiro(@PathVariable("id") long id){
         Parceiro parceiro = parceiroRepository.findById(id);
         ModelAndView modelAndView = new ModelAndView("parceiro/detalhes-parceiro");
-        modelAndView.addObject("parceiro", parceiro);
+        modelAndView.addObject("parceiros", parceiro);
 
         Iterable<Projeto> projetos = projetoRepository.findByParceiro(parceiro);
         modelAndView.addObject("projetos", projetos);
 
         return modelAndView;
     }
+
+    // POST QUE ADICIONA PROJETO AO PARCEIRO
+    @RequestMapping(value = "/detalhes-parceiro/{id}", method = RequestMethod.POST)
+    public String detalhesParceiroPost(@PathVariable("id") long id, Projeto projeto,
+                                      BindingResult result, RedirectAttributes attributes){
+
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos.");
+            return "redirect:/detalhes-parceiro/{id}";
+        }
+
+        if(projetoRepository.findById(projeto.getId()) != null){
+            attributes.addFlashAttribute("mensagem_erro", "ID duplicado");
+            return "redirect:/detalhes-parceiro/{id}";
+        }
+
+        Parceiro parceiro = parceiroRepository.findById(id);
+        projeto.setParceiro(parceiro);
+        projetoRepository.save(projeto);
+        attributes.addFlashAttribute("mensagem", "Projeto adicionado com sucesso!");
+        return "redirect:/detalhes-parceiro/{id}";
+    }
+
 
     // REQUISIÇÃO PARA DELETAR
     @RequestMapping("/deletarParceiro")
@@ -70,33 +94,19 @@ public class ParceiroController {
         return "redirect:/parceiros";
     }
 
-    // POST QUE ADICIONA PROJETO AO PARCEIRO
-    @RequestMapping(value = "/parceiro/{id}", method = RequestMethod.POST)
-    public String detalhesParceiroPost(@PathVariable("id") long id, @Valid Projeto projeto,
-                                           BindingResult result, RedirectAttributes attributes){
+    // DELETE PARA O PROJETO USANDO O CNPJ
+    @RequestMapping("/deletarProjetoParceiro")
+    public String deletarProjetoParceiro(String nome){
+        Projeto projeto = projetoRepository.findByNome(nome);
+        Parceiro parceiro = projeto.getParceiro();
 
-        if(result.hasErrors()){
-            attributes.addFlashAttribute("mensagem", "Verifique os campos.");
-            return "redirect:/parceiro/{id}";
-        }
-        Parceiro parceiro = parceiroRepository.findById(id);
-        projeto.setParceiro(parceiro);
-        projetoRepository.save(projeto);
-        attributes.addFlashAttribute("mensagem", "Projeto adicionado com sucesso!");
-        return "redirect:/parceiro/{id}";
+        String cnpj = "" + parceiro.getCnpj();
+
+        projetoRepository.delete(projeto);
+
+        return "redirect:/detalhes-parceiro/" + cnpj;
     }
 
-    // DELETE PARCEIRO PELO CNPJ
-    @RequestMapping("/deletarParceiro")
-    public String deletarParceiro(String cnpj){
-        Parceiro parceiro = parceiroRepository.findByCnpj(cnpj);
-        Projeto projeto = parceiro.getProjeto();
-        String id = "" + projeto.getId();
-
-        parceiroRepository.delete(parceiro);
-
-        return "redirect:/parceiro/" + id;
-    }
 
     // MÉTODOS UPDATE PARA PARCEIRO
     // GET CHAMA O FORMULÁRIO DE EDIÇÃO DO PARCEIRO
@@ -116,6 +126,6 @@ public class ParceiroController {
 
         long idLong = parceiro.getId();
         String id = "" + idLong;
-        return "redirect:/parceiro/" + id;
+        return "redirect:/detalhes-parceiro/" + id;
     }
 }

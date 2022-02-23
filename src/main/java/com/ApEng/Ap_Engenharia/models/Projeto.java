@@ -1,41 +1,37 @@
 package com.ApEng.Ap_Engenharia.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "projetos")
-public class Projeto implements Serializable {
+@Table(name = "projeto")
+public class Projeto implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
     // ATRIBUTOS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_projeto")
     private long id;
-
-    @Column(name = "nome_projeto")
+    @NotEmpty
     private String nome;
-
-    @Column(name = "data_inicio")
+    @NotEmpty
     private Date dataInicio;
-
-    @Column(name = "data_final")
+    @NotEmpty
     private Date dataFinal;
-
-    @Column(name = "valor_projeto")
+    @NotEmpty
     private double valorProjeto;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) // RELACIONAMENTO 1:1
+    @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "projetos", cascade = CascadeType.REMOVE)
-    private Terceirizado terceirizado;
-
-    @OneToMany(mappedBy = "projetos", cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Parceiro parceiro;
+
+    @ManyToOne
+    private Terceirizado terceirizado;
 
     // GETTER & SETTER
     public long getId() {
@@ -86,19 +82,19 @@ public class Projeto implements Serializable {
         this.cliente = cliente;
     }
 
-    public Terceirizado getTerceirizado() {
-        return terceirizado;
-    }
-
-    public void setTerceirizado(Terceirizado terceirizado) {
-        this.terceirizado = terceirizado;
-    }
-
     public Parceiro getParceiro() {
         return parceiro;
     }
 
     public void setParceiro(Parceiro parceiro) {
         this.parceiro = parceiro;
+    }
+
+    public Terceirizado getTerceirizado() {
+        return terceirizado;
+    }
+
+    public void setTerceirizado(Terceirizado terceirizado) {
+        this.terceirizado = terceirizado;
     }
 }

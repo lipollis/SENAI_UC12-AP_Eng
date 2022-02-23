@@ -32,76 +32,7 @@
 <!-- ========================================================================================================== -->
 <div class="container">
     <h1>Cadastrar terceirizado</h1>
-    <br>
-    <th:block th:include="mensagem-validacao"></th:block>
 
-    <form method="post">
-        <div class="form-group">
-            <label for="nome"><b>Nome do terceirizado:</b> </label>
-            <input type="text" class="form-control" value="" name="nome" id="nome"
-                   placeholder="Insira o nome do parceiro"
-                   required>
-            <small class="form-text text-muted"><i>*Utilize nome fantasia.</i></small></div>
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="celular"><b>Celular:</b></label>
-                    <input type="text" class="form-control" value="" name="celular"  id="celular"
-                           placeholder="(XX) XXXXX-XXXX"
-                           required />
-                    <small class="form-text text-muted"><i>* Melhor número para ligação e troca de mensagem.</i></small></div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="tipoServico"><b>Tipo de serviço:</b></label>
-                    <input type="text" class="form-control" value="" name="tipoServico" id="tipoServico"
-                           placeholder=""
-                           required />
-                    <small class="form-text text-muted"><i>* .</i></small></div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="cnpj"><b>CNPJ:</b></label>
-                    <input type="text" class="form-control" value="" name="cnpj" id="cnpj"
-                           placeholder="XX.XXX.XXX/XXXX-XX"
-                           required />
-                    <small class="form-text text-muted"><i>* XX.XXX.XXX/XXXX-XX </i></small></div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="dataInicio"><b>Data de início:</b></label>
-                    <input type="text" class="form-control" value="" name="dataInicio" id="dataInicio"
-                           placeholder="Previsão de início"
-                           required />
-                    <small class="form-text text-muted"><i>* Previsão do início do serviço.</i></small></div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="dataFinal"><b>Data de conclusão:</b></label>
-                    <input type="text" class="form-control" value="" name="dataFinal" id="dataFinal"
-                           placeholder="Previsão de início"
-                           required />
-                    <small class="form-text text-muted"><i>* Previsão de término do serviço.</i></small></div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="valorServico"><b>Valor do serviço:</b></label>
-                    <input type="text" class="form-control" value="" name="valorServico" id="valorServico"
-                           placeholder="Valor do serviço"
-                           required />
-                    <small class="form-text text-muted"><i>* Orçamento para realização do serviço.</i></small></div>
-            </div>
-
-        </div>
-
-        <button type="submit" class="btn btn-success">Adicionar terceirizado</button>
-    </form>
 </div>
 
 

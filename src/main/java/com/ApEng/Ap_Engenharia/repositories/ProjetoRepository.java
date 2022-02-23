@@ -11,13 +11,13 @@ import java.util.List;
 
 public interface ProjetoRepository extends CrudRepository<Projeto, Long> {
     Iterable<Projeto> findByCliente(Cliente cliente);
-    Iterable<Projeto> findByTerceirizado(Terceirizado terceirizado);
     Iterable<Projeto> findByParceiro(Parceiro parceiro);
+    Iterable<Projeto> findByTerceirizado(Terceirizado terceirizado);
 
     Projeto findById(long id);
-    List<Projeto> findByName(String nome);
+    Projeto findByNome(String nome);
 
     // QUERY QUE FARÁ A BUSCA NO BANCO DE DADOS
-    @Query(value = "SELECT u FROM projetos u WHERE u.nome_projeto LIKE %?1%")
+    @Query(value = "SELECT u FROM Projeto u WHERE u.nome LIKE %?1%")
     List<Projeto> findByNomesProjetos(String nome);
 }

@@ -5,7 +5,6 @@ import com.ApEng.Ap_Engenharia.models.Projeto;
 import com.ApEng.Ap_Engenharia.repositories.ClienteRepository;
 import com.ApEng.Ap_Engenharia.repositories.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-@Controller
 public class ClienteController {
-
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -51,16 +48,38 @@ public class ClienteController {
     }
 
     // GET QUE MOSTRA OS DETALHES DE CLIENTE E PROJETO
-    @RequestMapping("/cliente/{id}")
+    @RequestMapping("/detalhes-cliente/{id}")
     public ModelAndView detalhesCliente(@PathVariable("id") long id){
         Cliente cliente = clienteRepository.findById(id);
         ModelAndView modelAndView = new ModelAndView("cliente/detalhes-cliente");
-        modelAndView.addObject("cliente", cliente);
+        modelAndView.addObject("clientes", cliente);
 
         Iterable<Projeto> projetos = projetoRepository.findByCliente(cliente);
         modelAndView.addObject("projetos", projetos);
 
         return modelAndView;
+    }
+
+    // POST QUE ADICIONA PROJETO AO CLIENTE
+    @RequestMapping(value = "/detalhes-cliente/{id}", method = RequestMethod.POST)
+    public String detalhesClientePost(@PathVariable("id") long id, Projeto projeto,
+                                      BindingResult result, RedirectAttributes attributes){
+
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos.");
+            return "redirect:/detalhes-cliente/{id}";
+        }
+
+        if(projetoRepository.findById(projeto.getId()) != null){
+            attributes.addFlashAttribute("mensagem_erro", "ID duplicado");
+            return "redirect:/detalhes-cliente/{id}";
+        }
+
+        Cliente cliente = clienteRepository.findById(id);
+        projeto.setCliente(cliente);
+        projetoRepository.save(projeto);
+        attributes.addFlashAttribute("mensagem", "Projeto adicionado com sucesso!");
+        return "redirect:/detalhes-cliente/{id}";
     }
 
     // REQUISIÇÃO PARA DELETAR
@@ -71,32 +90,17 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
-    // POST QUE ADICIONA PROJETO AO CLIENTE
-    @RequestMapping(value = "/cliente/{id}", method = RequestMethod.POST)
-    public String detalhesClientePost(@PathVariable("id") long id, @Valid Projeto projeto,
-                                      BindingResult result, RedirectAttributes attributes){
+    // DELETE PARA O PROJETO USANDO O CPF
+    @RequestMapping("/deletarProjeto")
+    public String deletarProjeto(long id){
+        Projeto projeto = projetoRepository.findById(id);
+        Cliente cliente = projeto.getCliente();
 
-        if(result.hasErrors()){
-            attributes.addFlashAttribute("mensagem", "Verifique os campos.");
-            return "redirect:/cliente/{id}";
-        }
-        Cliente cliente = clienteRepository.findById(id);
-        projeto.setCliente(cliente);
-        projetoRepository.save(projeto);
-        attributes.addFlashAttribute("mensagem", "Projeto adicionado com sucesso!");
-        return "redirect:/cliente/{id}";
-    }
+        String cpf = "" + cliente.getCpf();
 
-    // DELETE CLIENTE PELO CPF
-    @RequestMapping("/deletarCliente")
-    public String deletarCliente(String cpf){
-        Cliente cliente = clienteRepository.findByCpf(cpf);
-        Projeto projeto = cliente.getProjeto();
-        String id = "" + projeto.getId();
+        projetoRepository.delete(projeto);
 
-        clienteRepository.delete(cliente);
-
-        return "redirect:/projeto/" + id;
+        return "redirect:/detalhes-cliente/" + cpf;
     }
 
     // MÉTODOS UPDATE PARA CLIENTE
@@ -117,6 +121,6 @@ public class ClienteController {
 
         long idLong = cliente.getId();
         String id = "" + idLong;
-        return "redirect:/cliente/" + id;
+        return "redirect:/detalhes-cliente/" + id;
     }
 }

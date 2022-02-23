@@ -1,33 +1,30 @@
 package com.ApEng.Ap_Engenharia.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "cliente")
 public class Cliente {
     // ATRIBUTOS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente")
     private long id;
-
-    @Column(name = "nome_cliente")
+    @NotEmpty
     private String nome;
-
-    @Column(name = "cel_cliente")
+    @NotEmpty
     private String celular;
-
-    @Column(name = "end_cliente")
+    @NotEmpty
     private String endereco;
-
-    @Column(name = "email_cliente")
+    @NotEmpty
     private String email;
-
-    @Column(name = "cpf_cliente", unique = true)
+    @NotEmpty
+    @Column(unique = true)
     private String cpf;
 
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.REMOVE)
-    private Projeto projeto;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
+    private List<Projeto>projetos;
 
     // GETTER & SETTER
     public long getId() {
@@ -78,11 +75,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public Projeto getProjeto() {
-        return projeto;
+    public List<Projeto> getProjetos() {
+        return projetos;
     }
 
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
     }
 }

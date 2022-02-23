@@ -29,38 +29,38 @@ public class BuscaController {
     //GET
     @RequestMapping("/")
     public ModelAndView abrirIndex() {
-        ModelAndView mv = new ModelAndView("index");
-        return mv;
+        ModelAndView modelAndView = new ModelAndView("index");
+        return modelAndView;
     }
 
     //POST
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView buscarIndex(@RequestParam("buscar") String buscar, @RequestParam("nome") String nome) {
 
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("index");
         String mensagem = "Resultados da busca por " + buscar;
 
         if(nome.equals("nomeProjeto")) {
-            mv.addObject("projetos", projetoRepository.findByNomesProjetos(buscar));
+            modelAndView.addObject("projetos", projetoRepository.findByNomesProjetos(buscar));
 
         }else if(nome.equals("nomeCliente")) {
-            mv.addObject("clientes", clienteRepository.findByNomesClientes(buscar));
+            modelAndView.addObject("clientes", clienteRepository.findByNomesClientes(buscar));
 
         }else if(nome.equals("nomeParceiro")) {
-            mv.addObject("parceiros", parceiroRepository.findByNomesParceiros(buscar));
+            modelAndView.addObject("parceiros", parceiroRepository.findByNomesParceiros(buscar));
 
         }else if(nome.equals("nomeTerceirizado")) {
-            mv.addObject("terceirizados", terceirizadoRepository.findByNomesTerceirizados(buscar));
+            modelAndView.addObject("terceirizados", terceirizadoRepository.findByNomesTerceirizados(buscar));
 
         }else {
-            mv.addObject("projetos", projetoRepository.findByNomesProjetos(buscar));
-            mv.addObject("clientes", clienteRepository.findByNomesClientes(buscar));
-            mv.addObject("parceiros", parceiroRepository.findByNomesParceiros(buscar));
-            mv.addObject("terceirizados", terceirizadoRepository.findByNomesTerceirizados(buscar));
+            modelAndView.addObject("projetos", projetoRepository.findByNomesProjetos(buscar));
+            modelAndView.addObject("clientes", clienteRepository.findByNomesClientes(buscar));
+            modelAndView.addObject("parceiros", parceiroRepository.findByNomesParceiros(buscar));
+            modelAndView.addObject("terceirizados", terceirizadoRepository.findByNomesTerceirizados(buscar));
         }
 
-        mv.addObject("mensagem", mensagem);
+        modelAndView.addObject("mensagem", mensagem);
 
-        return mv;
+        return modelAndView;
     }
 }

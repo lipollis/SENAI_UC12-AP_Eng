@@ -1,10 +1,13 @@
 package com.ApEng.Ap_Engenharia.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.List;
+
 
 @Entity
-@Table(name = "parceiros")
+@Table(name = "parceiro")
 public class Parceiro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -12,27 +15,21 @@ public class Parceiro implements Serializable {
     // ATRIBUTOS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_parceiro")
     private long id;
-
-    @Column(name = "nome_parceiro")
+    @NotEmpty
     private String nome;
-
-    @Column(name = "cel_parceiro")
+    @NotEmpty
     private String celular;
-
-    @Column(name = "end_parceiro")
+    @NotEmpty
     private String endereco;
-
-    @Column(name = "email_parceiro")
+    @NotEmpty
     private String email;
-
-    @Column(name = "cnpj_parceiro", unique = true)
+    @NotEmpty
+    @Column(unique = true)
     private String cnpj;
 
-    @OneToMany(mappedBy = "parceiros", cascade = CascadeType.REMOVE)
-    private Projeto projeto;
-
+    @OneToMany(mappedBy = "parceiro", cascade = CascadeType.REMOVE)
+    private List<Projeto> projetos;
 
     // GETTER & SETTER
     public long getId() {
@@ -75,19 +72,19 @@ public class Parceiro implements Serializable {
         this.email = email;
     }
 
-    public Projeto getProjeto() {
-        return projeto;
-    }
-
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
-    }
-
     public String getCnpj() {
         return cnpj;
     }
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
     }
 }

@@ -1,3 +1,4 @@
+
 package com.ApEng.Ap_Engenharia.controllers;
 
 import com.ApEng.Ap_Engenharia.models.Projeto;
@@ -50,8 +51,8 @@ public class TerceirizadoController {
         return modelAndView;
     }
 
-    // GET QUE MOSTRA OS DETALHES DE TERCEIRIZADO E PROJETO
-    @RequestMapping("/terceirizado/{id}")
+    // GET QUE MOSTRA OS DETALHES DE TERCEIRIZADO
+    @RequestMapping("/detalhes-terceirizado/{id}")
     public ModelAndView detalhesTerceirizado(@PathVariable("id") long id){
         Terceirizado terceirizado = terceirizadoRepository.findById(id);
         ModelAndView modelAndView = new ModelAndView("terceirizado/detalhes-terceirizado");
@@ -63,6 +64,28 @@ public class TerceirizadoController {
         return modelAndView;
     }
 
+    // POST QUE ADICIONA PROJETO AO PARCEIRO
+    @RequestMapping(value = "/detalhes-terceirizado/{id}", method = RequestMethod.POST)
+    public String detalhesTerceirizadoPost(@PathVariable("id") long id, Projeto projeto,
+                                       BindingResult result, RedirectAttributes attributes){
+
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos.");
+            return "redirect:/detalhes-terceirizado/{id}";
+        }
+
+        if(projetoRepository.findById(projeto.getId()) != null){
+            attributes.addFlashAttribute("mensagem_erro", "ID duplicado");
+            return "redirect:/detalhes-terceirizado/{id}";
+        }
+
+        Terceirizado terceirizado = terceirizadoRepository.findById(id);
+        projeto.setTerceirizado(terceirizado);
+        projetoRepository.save(projeto);
+        attributes.addFlashAttribute("mensagem", "Projeto adicionado com sucesso!");
+        return "redirect:/detalhes-terceirizado/{id}";
+    }
+
     // REQUISIÇÃO PARA DELETAR
     @RequestMapping("/deletarTerceirizado")
     public String deletarTerceirizado(long id){
@@ -71,32 +94,17 @@ public class TerceirizadoController {
         return "redirect:/terceirizados";
     }
 
-    // POST QUE ADICIONA PROJETO AO TERCEIRIZADO
-    @RequestMapping(value = "/terceirizado/{id}", method = RequestMethod.POST)
-    public String detalhesTerceirizadoPost(@PathVariable("id") long id, @Valid Projeto projeto,
-                                      BindingResult result, RedirectAttributes attributes){
+    // DELETE PARA O PROJETO USANDO O CNPJ
+    @RequestMapping("/deletarProjetoTerceirizado")
+    public String deletarProjetoTerceirizado(String nome){
+        Projeto projeto = projetoRepository.findByNome(nome);
+        Terceirizado terceirizado = projeto.getTerceirizado();
 
-        if(result.hasErrors()){
-            attributes.addFlashAttribute("mensagem", "Verifique os campos.");
-            return "redirect:/terceirizado/{id}";
-        }
-        Terceirizado terceirizado = terceirizadoRepository.findById(id);
-        projeto.setTerceirizado(terceirizado);
-        projetoRepository.save(projeto);
-        attributes.addFlashAttribute("mensagem", "Projeto adicionado com sucesso!");
-        return "redirect:/terceirizado/{id}";
-    }
+        String cnpj = "" + terceirizado.getCnpj();
 
-    // DELETE TERCEIRIZADO PELO CNPJ
-    @RequestMapping("/deletarTerceirizado")
-    public String deletarTerceirizado(String cnpj){
-        Terceirizado terceirizado = terceirizadoRepository.findByCnpj(cnpj);
-        Projeto projeto = terceirizado.getProjeto();
-        String id = "" + projeto.getId();
+        projetoRepository.delete(projeto);
 
-        terceirizadoRepository.delete(terceirizado);
-
-        return "redirect:/terceirizado/" + id;
+        return "redirect:/detalhes-terceirizado/" + cnpj;
     }
 
     // MÉTODOS UPDATE PARA TERCEIRIZADO
@@ -117,6 +125,6 @@ public class TerceirizadoController {
 
         long idLong = terceirizado.getId();
         String id = "" + idLong;
-        return "redirect:/terceirizado/" + id;
+        return "redirect:/detalhes-terceirizado/" + id;
     }
 }

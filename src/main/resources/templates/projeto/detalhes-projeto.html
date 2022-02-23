@@ -33,99 +33,10 @@
     <h1>Detalhes do projeto:</h1>
     <div th:each="projeto : ${projeto}" class="container">
 
-        <br>
-        <p><b>Nome do projeto:</b> <span th:text="${projeto.nome}"></span></p>
-        <p><b>Data de inicio:</b> <span th:text="${projeto.dataInicio}"></span></p>
-        <p><b>Data de conclusão:</b> <span th:text="${projeto.dataFinal}"></span></p>
-        <p><b>Valor do projeto:</b> <span th:text="${projeto.valorProjeto}"></span></p>
-        <br> <br>
-        <!-- ========================================================================================================== -->
-        <h2>Cadastrar cliente:</h2>
-        <th:block th:include="mensagem-validacao"></th:block>
-        <br>
 
-        <form method="post" th:object="${cliente}">
-            <div class="form-group">
-                <div class="row">
-
-                    <div class="form-group">
-                        <label for="nome"><b>Nome do cliente:</b> </label>
-                        <input type="text" class="form-control" value="" name="nome" id="nome"
-                               placeholder="Insira o nome do cliente"
-                               required>
-                        <small class="form-text text-muted"><i>*Utilize nome social.</i></small></div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="celular"><b>Celular:</b></label>
-                                <input type="text" class="form-control" value="" name="celular"  id="celular"
-                                       placeholder="(XX) XXXXX-XXXX"
-                                       required />
-                                <small class="form-text text-muted"><i>* Melhor número para ligação e troca de mensagem.</i></small></div>
-                        </div>
-
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="endereco"><b>Endereço:</b></label>
-                                <input type="text" class="form-control" value="" name="endereco" id="endereco"
-                                       placeholder=""
-                                       required />
-                                <small class="form-text text-muted"><i>* Rua, número, complemento, cidade - estado.</i></small></div>
-                        </div>
-
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="email"><b>E-mail:</b></label>
-                                <input type="text" class="form-control" value="" name="email" id="email"
-                                       placeholder="nome@dominio.com.br"
-                                       required />
-                                <small class="form-text text-muted"><i>* nome@dominio.com.br</i></small></div>
-                        </div>
-
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="cpf"><b>CPF:</b></label>
-                                <input type="text" class="form-control" value="" name="cpf" id="cpf"
-                                       placeholder="XXX.XXX.XXX-XX"
-                                       required />
-                                <small class="form-text text-muted"><i>* XXX.XXX.XXX-XX </i></small></div>
-                        </div>
-                    </div>
-            </div>
-
-            <button type="submit" class="btn btn-success">Adicionar cliente</button>
-        </form>
     </div>
     <br> <br>
     <!-- ========================================================================================================== -->
-    <h2>Inscritos:</h2>
-    <br>
-    <table class="table table-hover table-responsive w-auto table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Nome do cliente:</th>
-            <th scope="col">Celular:</th>
-            <th scope="col">Endereço:</th>
-            <th scope="col">E-mail:</th>
-            <th scope="col">CPF:</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr th:each="cliente : ${clientes}">
-            <td><span th:text="${cliente.nome}"></span></td>
-            <td><span th:text="${cliente.celular}"></span></td>
-            <td><span th:text="${cliente.endereco}"></span></td>
-            <td><span th:text="${cliente.email}"></span></td>
-            <td><span th:text="${cliente.cpf}"></span></td>
-            <td><a class="waves-effect waves-light btn-small"
-                   th:href="${(#mvc.url('projetoController#deletarProjeto').arg(0, projeto.id)).build()}"><button
-                    type="button" class="btn btn-danger">Excluir</button></a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
 
 <footer>

@@ -1,11 +1,13 @@
 package com.ApEng.Ap_Engenharia.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "terceirizados")
+@Table(name = "terceirizado")
 public class Terceirizado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -13,32 +15,26 @@ public class Terceirizado implements Serializable {
     // ATRIBUTOS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_terceirizado")
     private long id;
 
-    @Column(name = "nome_terceirizado")
+    @NotEmpty
     private String nome;
-
-    @Column(name = "cel_terceirizado")
+    @NotEmpty
     private String celular;
-
-    @Column(name = "tipo_servico")
+    @NotEmpty
     private String tipoServico;
-
-    @Column(name = "cnpj_servico", unique = true)
+    @NotEmpty
+    @Column(unique = true)
     private String cnpj;
-
-    @Column(name = "data_inicio")
+    @NotEmpty
     private Date dataInicio;
-
-    @Column(name = "data_final")
+    @NotEmpty
     private Date dataFinal;
-
-    @Column(name = "valor_servico")
+    @NotEmpty
     private Double valorServico;
+    @OneToMany(mappedBy = "terceirizado", cascade = CascadeType.REMOVE)
+    private List<Projeto> projetos;
 
-    @OneToMany(mappedBy = "terceirizados", cascade = CascadeType.REMOVE)
-    private Projeto projeto;
 
     // GETTER & SETTER
     public long getId() {
@@ -105,11 +101,4 @@ public class Terceirizado implements Serializable {
         this.valorServico = valorServico;
     }
 
-    public Projeto getProjeto() {
-        return projeto;
-    }
-
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
-    }
 }

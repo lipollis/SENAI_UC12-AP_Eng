@@ -32,7 +32,7 @@ public class Terceirizado implements Serializable {
     private double valorServico;
 
     @OneToMany(mappedBy = "terceirizado", cascade = CascadeType.REMOVE)
-    private List<Projeto> projetos;
+    private List<Projeto>projetos;
 
 
     // GETTER & SETTER
@@ -92,12 +92,19 @@ public class Terceirizado implements Serializable {
         this.dataFinal = dataFinal;
     }
 
-    public Double getValorServico() {
+    public double getValorServico() {
         return valorServico;
     }
 
-    public void setValorServico(Double valorServico) {
+    public void setValorServico(double valorServico) {
         this.valorServico = valorServico;
     }
 
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
+    }
 }

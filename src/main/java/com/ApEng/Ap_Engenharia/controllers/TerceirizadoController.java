@@ -58,7 +58,7 @@ public class TerceirizadoController {
         ModelAndView modelAndView = new ModelAndView("terceirizado/detalhes-terceirizado");
         modelAndView.addObject("terceirizado", terceirizado);
 
-        Iterable<Projeto> projetos = projetoRepository.findByTerceirizado(terceirizado);
+        Iterable<Projeto>projetos = projetoRepository.findByTerceirizado(terceirizado);
         modelAndView.addObject("projetos", projetos);
 
         return modelAndView;

@@ -39,25 +39,25 @@
 
         <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
-                <a class="nav-link " href="/" style="color:yellow;">Home</a>
+                <a class="nav-link " href="/" style="color:#FBD603;">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/clientes" style="color:yellow;">Clientes</a>
+                <a class="nav-link" href="/clientes" style="color:#FBD603;">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cadastrarCliente" style="color:yellow;">Cadastrar Clientes</a>
+                <a class="nav-link" href="/cadastrarCliente" style="color:#FBD603;">Cadastrar Clientes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/parceiros">Parceiros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cadastrarParceiro" style="color:yellow;">Cadastrar Parceiros</a>
+                <a class="nav-link" href="/cadastrarParceiro" style="color:#FBD603;">Cadastrar Parceiros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/terceirizados" style="color:yellow;">Terceirizados</a>
+                <a class="nav-link" href="/terceirizados" style="color:#FBD603;">Terceirizados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cadastrarTerceirizado" style="color:yellow;">Cadastrar Terceirizados</a>
+                <a class="nav-link" href="/cadastrarTerceirizado" style="color:#FBD603;">Cadastrar Terceirizados</a>
             </li>
         </ul>
     </div>
@@ -74,7 +74,7 @@
     <br>
     <table class="table table-hover table-responsive w-auto table-striped">
         <thead>
-        <tr>
+        <tr style="background-color:#5D5D5D;color:#C9C9C9;">
             <th scope="col">Nome do parceiro:</th>
             <th scope="col">Celular:</th>
             <th scope="col">Endereço:</th>
@@ -86,7 +86,7 @@
             <th scope="col"></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color:#FFFFFF;color:#000000;">
         <tr th:each="parceiro: ${parceiros}">
             <td><a th:href="${(#mvc.url('PC#detalhesParceiro').arg(0, parceiro.id)).build()}">
                 <span th:text="${parceiro.nome}"></span> </a></td>
@@ -98,11 +98,11 @@
             <td><span th:text="${parceiro.valorParceiria}"></span></td>
 
             <td><a th:href="${(#mvc.url('PC#deletarParceiro').arg(0, parceiro.id)).build()}">
-                <button type="button" class="btn btn-danger">Excluir</button></a></td>
+                <button type="button" class="btn " style="background-color:#771E1E;color:#C9C9C9;">Excluir</button></a></td>
             <td><a th:href="${(#mvc.url('PC#editarParceiro').arg(0, parceiro.id)).build()}">
-                <button type="button" class="btn btn-primary">Editar</button></a></td>
+                <button type="button" class="btn " style="background-color:#000000;color:#A4814C;">Editar</button></a></td>
             <td><a th:href="${(#mvc.url('PC#detalhesParceiro').arg(0, parceiro.id)).build()}">
-                <button type="button" class="btn btn-success">Adicionar projeto</button></a></td>
+                <button type="button" class="btn " style="background-color:#000000;color:#C9C9C9;">Adicionar projeto</button></a></td>
         </tr>
         </tbody>
     </table>
@@ -113,16 +113,16 @@
     <div class="footer-copyright fixed-bottom bg-dark text-center py-3">
         <div class="row justify-content-center">
             <a class="" href="https://github.com/lipollis" >
-                <i class="fa fa-github" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-github" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.linkedin.com/in/alinepollisbeck/">
-                <i class="fa fa-linkedin" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-linkedin" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.facebook.com/aline.pollis/">
-                <i class="fa fa-facebook-square" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-facebook-square" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.instagram.com/alinepollis/">
-                <i class="fa fa-instagram" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-instagram" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
         </div>
         <span class="text-light align-middle">| App AP ENGENHARIA - UC 12 | - ©
 				2022 Copyright: Aline Pollis</span>

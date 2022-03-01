@@ -40,22 +40,22 @@
 
         <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
-                <a class="nav-link " href="/" style="color:yellow;">Home</a>
+                <a class="nav-link " href="/" style="color:#FBD603;">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/clientes" style="color:yellow;">Clientes</a>
+                <a class="nav-link" href="/clientes" style="color:#FBD603;">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cadastrarCliente" style="color:yellow;">Cadastrar Clientes</a>
+                <a class="nav-link" href="/cadastrarCliente" style="color:#FBD603;">Cadastrar Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/parceiros" style="color:yellow;">Parceiros</a>
+                <a class="nav-link" href="/parceiros" style="color:#FBD603;">Parceiros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cadastrarParceiro" style="color:yellow;">Cadastrar Parceiros</a>
+                <a class="nav-link" href="/cadastrarParceiro" style="color:#FBD603;">Cadastrar Parceiros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/terceirizados" style="color:yellow;">Terceirizados</a>
+                <a class="nav-link" href="/terceirizados" style="color:#FBD603;">Terceirizados</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/cadastrarTerceirizado">Cadastrar Terceirizados</a>
@@ -74,10 +74,10 @@
     <th:block th:include="mensagem-validacao"></th:block>
 
     <form method="post">
-        <h1>Atualizar informações de parceiro</h1>
+        <h1>Atualizar informações de terceirizado</h1>
         <br>
         <div class="form-group">
-            <label for="nome"><b>Nome do parceiro:</b> </label>
+            <label for="nome"><b>Nome do terceirizado:</b> </label>
             <input type="text" class="form-control" value="" name="nome" id="nome"
                    placeholder="Insira o nome do parceiro"
                    required th:attr="value = ${terceirizado.nome}" />
@@ -139,7 +139,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn " style="background-color:#000000;color:#C9C9C9;">Salvar</button>
         </div>
     </form>
 </div>
@@ -151,16 +151,16 @@
     <div class="footer-copyright fixed-bottom bg-dark text-center py-3">
         <div class="row justify-content-center">
             <a class="" href="https://github.com/lipollis" >
-                <i class="fa fa-github" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-github" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.linkedin.com/in/alinepollisbeck/">
-                <i class="fa fa-linkedin" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-linkedin" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.facebook.com/aline.pollis/">
-                <i class="fa fa-facebook-square" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-facebook-square" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.instagram.com/alinepollis/">
-                <i class="fa fa-instagram" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-instagram" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
         </div>
         <span class="text-light align-middle">| App AP ENGENHARIA - UC 12 | - ©
 				2022 Copyright: Aline Pollis</span>

@@ -39,25 +39,25 @@
 
         <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
-                <a class="nav-link " href="/" style="color:yellow;">Home</a>
+                <a class="nav-link " href="/" style="color:#FBD603;">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/clientes" style="color:yellow;">Clientes</a>
+                <a class="nav-link" href="/clientes" style="color:#FBD603;">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cadastrarCliente" style="color:yellow;">Cadastrar Clientes</a>
+                <a class="nav-link" href="/cadastrarCliente" style="color:#FBD603;">Cadastrar Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/parceiros" style="color:yellow;">Parceiros</a>
+                <a class="nav-link" href="/parceiros" style="color:#FBD603;">Parceiros</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/cadastrarParceiro">Cadastrar Parceiros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/terceirizados" style="color:yellow;">Terceirizados</a>
+                <a class="nav-link" href="/terceirizados" style="color:#FBD603;">Terceirizados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cadastrarTerceirizado" style="color:yellow;">Cadastrar Terceirizados</a>
+                <a class="nav-link" href="/cadastrarTerceirizado" style="color:#FBD603;">Cadastrar Terceirizados</a>
             </li>
         </ul>
     </div>
@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Adicionar projeto</button>
+        <button type="submit" class="btn " style="background-color:#000000;color:#C9C9C9;">Adicionar projeto</button>
     </form>
     </div>
     <br> <br>
@@ -141,7 +141,7 @@
         <td><span th:text="${projeto.valorProjeto}"></span></td>
         <td><a class="waves-effect waves-light btn-small"
                th:href="${(#mvc.url('PC#deletarProjetoParceiro').arg(0, projeto.nome)).build()}"><button
-                type="button" class="btn btn-danger">Excluir</button></a></td>
+                type="button" class="btn " style="background-color:#771E1E;color:#C9C9C9;">Excluir</button></a></td>
     </tr>
     </tbody>
 </table>
@@ -151,16 +151,16 @@
     <div class="footer-copyright fixed-bottom bg-dark text-center py-3">
         <div class="row justify-content-center">
             <a class="" href="https://github.com/lipollis" >
-                <i class="fa fa-github" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-github" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.linkedin.com/in/alinepollisbeck/">
-                <i class="fa fa-linkedin" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-linkedin" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.facebook.com/aline.pollis/">
-                <i class="fa fa-facebook-square" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-facebook-square" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
 
             <a class="" href="https://www.instagram.com/alinepollis/">
-                <i class="fa fa-instagram" style="font-size:40px;color:yellow;margin:10px;"></i></a>
+                <i class="fa fa-instagram" style="font-size:40px;color:#FBD603;margin:10px;"></i></a>
         </div>
         <span class="text-light align-middle">| App AP ENGENHARIA - UC 12 | - ©
 				2022 Copyright: Aline Pollis</span>
